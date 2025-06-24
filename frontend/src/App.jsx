@@ -9,6 +9,7 @@ import PopularItems from './components/PopularItems';
 import Suggestion from './components/Suggestion';
 import ProductDetail from './components/ProductDetail';
 import InboxModal from './components/InboxModal';
+import SearchResults from './components/SearchResults'; // Add this import
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -28,6 +29,7 @@ function App() {
                 </>
               } />
               <Route path="/product/:productId" element={<ProductDetail />} />
+              <Route path="/search" element={<SearchResults />} /> {/* Add this route */}
             </Routes>
           </main>
           <Footer />

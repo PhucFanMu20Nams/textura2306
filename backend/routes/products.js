@@ -1,7 +1,48 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../models');
 const { Op } = require('sequelize');
+const db = require('../models');
+const router = express.Router();
+
+// Search products endpoint
+router.get('/search', async (req, res) => {
+  try {
+    const query = req.query.q || '';
+    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page) || 1;
+    const offset = (page - 1) * limit;
+    
+    if (!query) {
+      return res.status(400).json({ message: 'Search query is required' });
+    }
+
+    const { count, rows } = await db.products.findAndCountAll({
+      where: {
+        [Op.or]: [
+          { name: { [Op.iLike]: `%${query}%` } },
+          { brand: { [Op.iLike]: `%${query}%` } },
+          { category: { [Op.iLike]: `%${query}%` } },
+          { subcategory: { [Op.iLike]: `%${query}%` } },
+          { type: { [Op.iLike]: `%${query}%` } }
+        ]
+      },
+      limit,
+      offset,
+      order: [['name', 'ASC']]
+    });
+
+    const products = rows.map(product => product.toJSON());
+
+    res.json({
+      total: count,
+      page,
+      pages: Math.ceil(count / limit),
+      products
+    });
+  } catch (error) {
+    console.error('Error searching products:', error);
+    res.status(500).json({ message: 'Error searching products' });
+  }
+});
 
 // Get all products with pagination
 router.get('/', async (req, res) => {
