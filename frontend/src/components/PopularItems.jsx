@@ -24,60 +24,66 @@ function PopularItems() {
       });
   }, []);
 
-  // Sample product data as fallback
+  // Sample product data as fallback - using your specified 6 products
   const sampleProducts = [
     {
-      id: "lightweight-linen-shirt",
-      name: 'Lightweight Linen Shirt',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "nike-dunk-low",
+      name: 'Nike Dunk Low',
+      brand: 'Nike',
+      price: 1800000,
+      image: '/assets/images/products/shoe-1.jpg'
     },
     {
-      id: 2,
-      name: 'Luxury Jersey Quarter-Zip Pullover',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "nike-dunk-low-panda",
+      name: 'Nike Dunk Low Retro Panda',
+      brand: 'Nike',
+      price: 2300000,
+      image: '/assets/images/products/nike_dunk_retro_panda_1.jpg'
     },
     {
-      id: 3,
-      name: 'Luxury Jersey Quarter-Zip Pullover',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "adidas-samba-og",
+      name: 'Adidas Samba OG',
+      brand: 'Adidas',
+      price: 1900000,
+      image: '/assets/images/products/shoe-3.jpg'
     },
     {
-      id: 4,
-      name: 'Luxury Jersey Quarter-Zip Pullover',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "nike-sportswear-club-button-up",
+      name: 'Nike Sportswear Club Woven Short-Sleeve Button-Up',
+      brand: 'Nike',
+      price: 890000,
+      image: '/assets/images/products/shirt-1.jpg'
     },
     {
-      id: 5,
-      name: 'Luxury Jersey Quarter-Zip Pullover',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "nike-sportswear-club-tshirt-ss25",
+      name: 'Nike Sportswear Club T-Shirt SS25',
+      brand: 'Nike',
+      price: 550000,
+      image: '/assets/images/products/shirt-2.jpg'
     },
     {
-      id: 6,
-      name: 'Luxury Jersey Quarter-Zip Pullover',
-      brand: 'Polo Ralph Lauren',
-      price: '500.000 VND',
-      image: '/assets/images/ralph_product.jpg'
+      id: "nike-killshot-2-leather",
+      name: 'Nike Killshot 2 Leather',
+      brand: 'Nike',
+      price: 1700000,
+      image: '/assets/images/products/shoe-4.jpg'
     }
   ];
 
   // Helper function to handle image URLs
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return '/assets/images/ralph_product.jpg'; // Default
+    if (!imagePath) return '/assets/images/shirt-1.jpg'; // Default
     
     if (imagePath.startsWith('http')) return imagePath;
     
+    // Handle backend images
+    if (imagePath.startsWith('/images/')) {
+      return `http://localhost:5000${imagePath}`;
+    }
+    
+    // Handle frontend assets
     const path = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return `http://localhost:5000${path}`;
+    return path;
   };
 
   if (loading) {
@@ -93,7 +99,7 @@ function PopularItems() {
         <p className="section-subtitle">Top-Selling Pieces from Last Month</p>
         
         <div className="products-grid">
-          {displayProducts.map(product => (
+          {displayProducts.slice(0, 6).map(product => (
             <Link to={`/product/${product.id}`} key={product.id} className="product-card">
               <div className="product-image">
                 <img 
@@ -101,17 +107,19 @@ function PopularItems() {
                   alt={product.name}
                   onError={(e) => {
                     console.error('Image failed to load:', e.target.src);
-                    e.target.src = '/assets/images/ralph_product.jpg'; // Fallback
+                    e.target.src = '/assets/images/shirt-1.jpg'; // Fallback
                   }}
                 />
               </div>
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-brand">{product.brand}</p>
-              <p className="product-price">{
-                typeof product.price === 'number' 
-                  ? product.price.toLocaleString() + ' VND' 
-                  : product.price
-              }</p>
+              <div className="product-info">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-brand">{product.brand}</p>
+                <p className="product-price">{
+                  typeof product.price === 'number' 
+                    ? product.price.toLocaleString('vi-VN') + ' VND' 
+                    : product.price
+                }</p>
+              </div>
             </Link>
           ))}
         </div>
