@@ -31,7 +31,7 @@ function PopularItems() {
       name: 'Nike Dunk Low',
       brand: 'Nike',
       price: 1800000,
-      image: '/assets/images/products/shoe-1.jpg'
+      image: '/images/products/nike-dunk-low.jpg'
     },
     {
       id: "nike-dunk-low-panda",
@@ -45,28 +45,28 @@ function PopularItems() {
       name: 'Adidas Samba OG',
       brand: 'Adidas',
       price: 1900000,
-      image: '/assets/images/products/shoe-3.jpg'
+      image: '/images/products/adidas-samba-og.jpg'
     },
     {
       id: "nike-sportswear-club-button-up",
       name: 'Nike Sportswear Club Woven Short-Sleeve Button-Up',
       brand: 'Nike',
       price: 890000,
-      image: '/assets/images/products/shirt-1.jpg'
+      image: '/images/products/nike-button-up.jpg'
     },
     {
       id: "nike-sportswear-club-tshirt-ss25",
       name: 'Nike Sportswear Club T-Shirt SS25',
       brand: 'Nike',
       price: 550000,
-      image: '/assets/images/products/shirt-2.jpg'
+      image: '/images/products/nike-tshirt-ss25.jgp'
     },
     {
       id: "nike-killshot-2-leather",
       name: 'Nike Killshot 2 Leather',
       brand: 'Nike',
       price: 1700000,
-      image: '/assets/images/products/shoe-4.jpg'
+      image: '/images/products/nike-killshot-2.jpg'
     }
   ];
 
