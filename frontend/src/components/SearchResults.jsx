@@ -65,12 +65,23 @@ const SearchResults = () => {
               {products.map(product => (
                 <Link to={`/product/${product.id}`} key={product.id} className="product-card">
                   <div className="product-image">
-                    <img src={getImageUrl(product.image)} alt={product.name} />
+                    <img 
+                      src={getImageUrl(product.image)} 
+                      alt={product.name}
+                      onError={(e) => {
+                        console.error('Image failed to load:', e.target.src);
+                        e.target.src = '/placeholder-image.jpg'; // Fallback
+                      }}
+                    />
                   </div>
                   <div className="product-info">
-                    <div className="product-category">{product.category} {product.subcategory}</div>
                     <h3 className="product-name">{product.name}</h3>
-                    <div className="product-price">₩{formatPrice(product.price)}</div>
+                    <p className="product-brand">{product.brand}</p>
+                    <p className="product-price">{
+                      typeof product.price === 'number' 
+                        ? product.price.toLocaleString('vi-VN') + ' VND' 
+                        : product.price
+                    }</p>
                   </div>
                 </Link>
               ))}
