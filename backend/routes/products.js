@@ -80,36 +80,3 @@ router.post('/clear-cache', verifyToken, (req, res) => {
 });
 
 module.exports = router;
-
-/* 
-Example using fetch in JavaScript:
-
-fetch('http://localhost:5000/api/products', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    "id": "casual-oxford-shirt",
-    "name": "Casual Oxford Shirt",
-    "brand": "Brooks Brothers",
-    "price": 450000,
-    "category": "Men",
-    "subcategory": "Shirt",
-    "type": "Casual shirt",
-    "image": "/images/products/casual-oxford-shirt.jpg",
-    "gallery": [
-      "/images/products/casual-oxford-shirt.jpg",
-      "/images/products/casual-oxford-shirt-2.jpg"
-    ],
-    "sizes": ["S", "M", "L", "XL"],
-    "details": [
-      "Relaxed fit oxford cotton shirt.",
-      "Button-down collar with front pocket.",
-      "Machine washable."
-    ]
-  })
-})
-.then(response => response.json())
-.then(data => console.log(data));
-*/

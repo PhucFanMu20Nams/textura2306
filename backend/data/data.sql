@@ -3,7 +3,10 @@ DROP TABLE IF EXISTS product_sizes CASCADE;
 DROP TABLE IF EXISTS product_images CASCADE;
 DROP TABLE IF EXISTS product_details CASCADE; 
 DROP TABLE IF EXISTS products CASCADE;
+<<<<<<< HEAD
 DROP TABLE IF EXISTS admins CASCADE;
+=======
+>>>>>>> bf776d704e1fd29e1891b6b0ccfd09fce48987f9
 
 -- Create tables
 CREATE TABLE products (
@@ -43,6 +46,7 @@ CREATE TABLE product_sizes (
   "updatedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
 -- Admin table
 CREATE TABLE IF NOT EXISTS admins (
   id SERIAL PRIMARY KEY,
@@ -54,6 +58,8 @@ CREATE TABLE IF NOT EXISTS admins (
   "updatedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+=======
+>>>>>>> bf776d704e1fd29e1891b6b0ccfd09fce48987f9
 -- Insert product data
 INSERT INTO products (id, name, brand, price, category, subcategory, type, image) VALUES 
 ('nike-dunk-low', 'Nike Dunk Low', 'Nike', 1800000, 'Men', 'Giay', 'Sneaker', '/images/products/nike-dunk-low.jpg'),
@@ -140,8 +146,12 @@ INSERT INTO product_sizes ("productId", size) VALUES
 ('nike-killshot-2-leather', '42'),
 ('nike-killshot-2-leather', '43'),
 ('nike-killshot-2-leather', '44'),
+<<<<<<< HEAD
 ('nike-killshot-2-leather', '45');
 
 -- Insert admin account
 INSERT INTO admins (username, password) VALUES
 ('admin', '$2a$12$FAW0s2MJeK6mFr4QR7Re5uyYXQTLGiHJKqkYRpPQnGnmKPYpNI/Be');
+=======
+('nike-killshot-2-leather', '45');
+>>>>>>> bf776d704e1fd29e1891b6b0ccfd09fce48987f9

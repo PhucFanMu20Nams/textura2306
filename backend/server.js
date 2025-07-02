@@ -97,10 +97,6 @@ app.use('/images', express.static(path.join(__dirname, 'images'), {
   }
 }));
 
-// API routes with specific rate limiting and caching
-app.use('/api/auth', authLimiter, authRoutes); // Strict rate limiting for auth
-app.use('/api/products', apiLimiter, cacheMiddleware(600000), productRoutes); // API rate limiting + cache
-
 // Health check endpoint (no rate limiting)
 app.get('/health', (req, res) => {
   res.json({
@@ -132,6 +128,10 @@ app.get('/health', (req, res) => {
     }
   });
 });
+
+// API routes with specific rate limiting and caching
+app.use('/api/auth', authLimiter, authRoutes); // Strict rate limiting for auth
+app.use('/api/products', apiLimiter, cacheMiddleware(600000), productRoutes); // API rate limiting + cache
 
 // Custom 404 handler for better user experience
 app.use((req, res) => {
